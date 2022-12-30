@@ -1,6 +1,17 @@
+#[derive(Debug)]
 struct Rectangle{
     width:u32,
     height:u32
+}
+
+impl Rectangle {
+    fn area(&self) -> u32 {
+        self.width * self.height
+    }
+
+    fn can_hold(&self,rect:&Rectangle) -> bool {
+        self.width > rect.width && self.height > rect.height
+    }
 }
 
 fn main() {
@@ -9,9 +20,18 @@ fn main() {
     height:50
    };
 
-    println!("The area of the rectangle is {} square pixels",area(&rect1));
-}
+   let rect2 = Rectangle {
+    width:20,
+    height:30
+   };
 
-fn area(rect:&Rectangle) -> u32{
-    rect.width * rect.height
+   let rect3 = Rectangle {
+    width:50,
+    height:80
+   };
+   
+    println!("The area of the rectangle is {} square pixels",rect1.area());
+
+    println!("Rect1 can hold Rect 2: {}",rect1.can_hold(&rect2));
+    println!("Rect1 can hold Rect 3: {}",rect1.can_hold(&rect3));
 }
